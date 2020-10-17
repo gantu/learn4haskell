@@ -610,7 +610,6 @@ duplicate :: [a] -> [a]
 duplicate [] = []
 duplicate (x:xs) = x : x : duplicate xs
 
-
 {- |
 =⚔️= Task 7
 Write a function that takes elements of a list only on even positions.
@@ -735,7 +734,7 @@ value of the element itself
 🕯 HINT: Use combination of 'map' and 'replicate'
 -}
 smartReplicate :: [Int] -> [Int]
-smartReplicate l = error "smartReplicate: Not implemented!"
+smartReplicate l = concat $ map (\x -> replicate x x) l
 
 {- |
 =⚔️= Task 9
@@ -748,8 +747,8 @@ the list with only those lists that contain a passed element.
 
 🕯 HINT: Use the 'elem' function to check whether an element belongs to a list
 -}
-contains = error "contains: Not implemented!"
-
+contains :: Eq a => a -> [[a]] -> [[a]]
+contains x = filter (elem x)
 
 {- |
 =🛡= Eta-reduction
@@ -788,13 +787,13 @@ Let's now try to eta-reduce some of the functions and ensure that we
 mastered the skill of eta-reducing.
 -}
 divideTenBy :: Int -> Int
-divideTenBy x = div 10 x
+divideTenBy = div 10
 
 -- TODO: type ;)
-listElementsLessThan x l = filter (< x) l
+listElementsLessThan x = filter (< x)
 
 -- Can you eta-reduce this one???
-pairMul xs ys = zipWith (*) xs ys
+pairMul = zipWith (*)
 
 {- |
 =🛡= Lazy evaluation
