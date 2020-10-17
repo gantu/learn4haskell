@@ -848,7 +848,13 @@ list.
 
 🕯 HINT: Use the 'cycle' function
 -}
-rotate = error "rotate: Not implemented!"
+rotate :: Int -> [a] -> [a]
+rotate n l | n < 0 = []
+           | otherwise = drop r $ take n' (cycle l) 
+              where
+                s = length l
+                n' = s + n
+                r  = n' - s  
 
 {- |
 =💣= Task 12*
@@ -864,9 +870,12 @@ and reverses it.
   function, but in this task, you need to implement it manually. No
   cheating!
 -}
-rewind = error "rewind: Not Implemented!"
-
-
+rewind :: [a] -> [a]
+rewind = go []
+  where
+    go :: [a] -> [a] -> [a]
+    go acc [] = acc
+    go acc (x:xs) = go (x : acc) xs
 {-
 You did it! Now it is time to open pull request with your changes
 and summon @vrom911 and @chshersh for the review!
